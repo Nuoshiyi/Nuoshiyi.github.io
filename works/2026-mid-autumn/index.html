@@ -281,6 +281,48 @@ body {
 }
 
 
+
+/* =========================
+   月光祝福卡片
+========================= */
+
+.blessing-card {
+    position: relative;
+    width: 100%;
+    padding: 28px 22px 30px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,245,210,.13),
+        rgba(255,255,255,.05)
+    );
+    border: 1px solid rgba(255,225,160,.30);
+    border-radius: 28px;
+    backdrop-filter: blur(18px);
+    box-shadow:
+        0 0 35px rgba(255,220,150,.15),
+        inset 0 0 25px rgba(255,255,255,.05);
+    overflow: hidden;
+}
+
+.card-light {
+    position:absolute;
+    width:140px;
+    height:140px;
+    right:-50px;
+    top:-50px;
+    background: radial-gradient(
+        circle,
+        rgba(255,230,160,.35),
+        transparent 70%
+    );
+    filter:blur(12px);
+}
+
+#blessing {
+    position:relative;
+    z-index:2;
+}
+
 .style-name {
 
     display: inline-block;
@@ -615,6 +657,112 @@ button:active {
    底部文字
 ========================= */
 
+
+/* =========================
+   云层 / 流星 / 小动物
+========================= */
+
+.cloud {
+    position:absolute;
+    width:180px;
+    height:50px;
+    background:rgba(255,255,255,.10);
+    border-radius:50px;
+    filter:blur(3px);
+    animation:cloudMove 24s infinite ease-in-out;
+}
+
+.cloud1 {
+    left:10%;
+    top:18%;
+}
+
+.cloud2 {
+    left:45%;
+    top:28%;
+    animation-duration:32s;
+}
+
+@keyframes cloudMove {
+    50% {
+        transform:translateX(40px);
+    }
+}
+
+.meteor {
+    position:absolute;
+    width:120px;
+    height:2px;
+    background:linear-gradient(
+        to right,
+        transparent,
+        #fff2c0
+    );
+    top:18%;
+    right:10%;
+    transform:rotate(-25deg);
+    animation:meteorMove 5s infinite;
+}
+
+@keyframes meteorMove {
+    0%,70% {
+        opacity:0;
+        transform:translate(0,0) rotate(-25deg);
+    }
+    75% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+        transform:translate(-180px,100px) rotate(-25deg);
+    }
+}
+
+.animal-friends {
+    position:absolute;
+    bottom:12%;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:70px;
+    display:flex;
+    gap:25px;
+    z-index:6;
+    filter:drop-shadow(0 8px 12px rgba(0,0,0,.3));
+}
+
+.rabbit,
+.fox {
+    animation:animalBreath 3s infinite ease-in-out;
+    position:relative;
+}
+
+.fox {
+    animation-delay:.6s;
+}
+
+@keyframes animalBreath {
+    50% {
+        transform:translateY(-5px);
+    }
+}
+
+.scarf,
+.tail {
+    position:absolute;
+    font-size:28px;
+    color:#ffd98a;
+}
+
+.scarf {
+    left:25px;
+    bottom:12px;
+}
+
+.tail {
+    right:-10px;
+    bottom:5px;
+}
+
 .footer {
 
     position: absolute;
@@ -705,17 +853,23 @@ button:active {
         </div>
 
 
-        <div
-            class="style-name"
-            id="styleName"
-        >
+        <div class="blessing-card">
 
-            温柔治愈
+            <div class="card-light"></div>
+
+            <div
+                class="style-name"
+                id="styleName"
+            >
+
+                温柔治愈
+
+            </div>
+
+
+            <div id="blessing"></div>
 
         </div>
-
-
-        <div id="blessing"></div>
 
 
         <div class="buttons">
@@ -737,6 +891,10 @@ button:active {
 
             </button>
 
+            <button onclick="relightMoon()">
+                重新点亮月亮
+            </button>
+
         </div>
 
 
@@ -751,6 +909,24 @@ button:active {
 
     </div>
 
+
+
+<!-- 云层 -->
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="meteor" id="meteor"></div>
+
+<!-- 好朋友小动物 -->
+<div class="animal-friends">
+    <div class="rabbit">
+        🐰
+        <span class="scarf">〰</span>
+    </div>
+    <div class="fox">
+        🦊
+        <span class="tail">〰</span>
+    </div>
+</div>
 
     <div class="footer">
 
@@ -1260,6 +1436,24 @@ function changeStyle() {
 }
 
 
+
+
+function relightMoon() {
+    const moon = document.getElementById("moon");
+    const glow = document.getElementById("moonGlow");
+
+    moon.classList.remove("show");
+    glow.classList.remove("show");
+
+    void moon.offsetWidth;
+
+    setTimeout(()=>{
+        moon.classList.add("show");
+        glow.classList.add("show");
+        showRandomBlessing();
+        bigFirework();
+    },100);
+}
 
 /* ==================================================
    星星
