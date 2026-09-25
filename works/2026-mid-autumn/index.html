@@ -2,1756 +2,1684 @@
 <html lang="zh-CN">
 
 <head>
+
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
->
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<title>月满 · 中秋</title>
+
+<title>
+Moonlight Letter · 月满中秋
+</title>
+
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+/* ==========================
+   基础
+========================== */
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
 }
+
 
 html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+body{
 
-    font-family:
-        "PingFang SC",
-        "Microsoft YaHei",
-        sans-serif;
+width:100%;
+height:100%;
 
-    background: #050816;
+overflow:hidden;
+
+font-family:
+"PingFang SC",
+"Microsoft YaHei",
+serif;
+
+background:#050b18;
+
 }
 
 
-/* =========================
-   主场景
-========================= */
 
-#scene {
+/* ==========================
+   夜空背景
+========================== */
 
-    position: fixed;
-    inset: 0;
 
-    overflow: hidden;
+#scene{
 
-    background:
+position:fixed;
 
-        radial-gradient(
-            circle at 50% 25%,
-            rgba(69, 93, 150, .65),
-            rgba(20, 29, 65, .9) 35%,
-            #050816 78%
-        );
+inset:0;
+
+overflow:hidden;
+
+
+background:
+
+radial-gradient(
+circle at 25% 20%,
+rgba(80,100,170,.35),
+transparent 30%
+),
+
+
+linear-gradient(
+180deg,
+#09142f 0%,
+#081226 45%,
+#050914 100%
+);
+
+
 }
 
 
-/* =========================
-   星星
-========================= */
 
-.star {
+/* ==========================
+   星空
+========================== */
 
-    position: absolute;
 
-    width: 2px;
-    height: 2px;
+.star{
 
-    border-radius: 50%;
+position:absolute;
 
-    background: white;
+width:3px;
 
-    pointer-events: none;
+height:3px;
 
-    animation:
-        starBlink 2s infinite alternate;
+background:white;
+
+border-radius:50%;
+
+opacity:.7;
+
+
+animation:
+
+twinkle 3s infinite alternate;
+
 }
 
 
-@keyframes starBlink {
 
-    from {
-        opacity: .15;
-        transform: scale(.7);
-    }
+@keyframes twinkle{
 
-    to {
-        opacity: 1;
-        transform: scale(1.8);
-    }
+
+from{
+
+opacity:.2;
+
+transform:scale(.7);
+
 }
 
 
-/* =========================
-   月光
-========================= */
+to{
 
-.moon-glow {
+opacity:1;
 
-    position: absolute;
+transform:scale(1.5);
 
-    left: 50%;
-    top: 22%;
-
-    width: 320px;
-    height: 320px;
-
-    transform:
-        translate(-50%, -50%)
-        scale(.6);
-
-    border-radius: 50%;
-
-    opacity: 0;
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(255, 236, 169, .16),
-            rgba(255, 222, 130, .07) 45%,
-            transparent 72%
-        );
 }
 
 
-.moon-glow.show {
-
-    animation:
-        glowShow 4s forwards;
 }
 
 
-@keyframes glowShow {
 
-    to {
+/* ==========================
+   开场遮罩
+========================== */
 
-        opacity: 1;
 
-        transform:
-            translate(-50%, -50%)
-            scale(1.65);
-    }
+#cover{
+
+position:absolute;
+
+inset:0;
+
+z-index:100;
+
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+
+background:
+
+radial-gradient(
+circle,
+#283761,
+#070b19 70%
+);
+
+
+color:#ffe8ae;
+
+
+transition:
+
+opacity 1.2s ease;
+
 }
 
 
-/* =========================
+
+.cover-moon{
+
+font-size:80px;
+
+margin-bottom:25px;
+
+
+animation:
+
+moonBreath 2s infinite alternate;
+
+}
+
+
+
+@keyframes moonBreath{
+
+
+from{
+
+transform:scale(.95);
+
+}
+
+
+to{
+
+transform:scale(1.08);
+
+}
+
+
+}
+
+
+
+#cover h1{
+
+font-size:25px;
+
+font-weight:normal;
+
+letter-spacing:6px;
+
+}
+
+
+
+#cover p{
+
+margin-top:20px;
+
+font-size:13px;
+
+letter-spacing:3px;
+
+color:
+rgba(255,255,255,.55);
+
+}
+
+
+
+/* ==========================
    月亮
-========================= */
-
-.moon {
-
-    position: absolute;
-
-    left: 50%;
-    top: 22%;
-
-    width: 150px;
-    height: 150px;
-
-    transform:
-        translate(-50%, 200px)
-        scale(.2);
-
-    border-radius: 50%;
-
-    opacity: 0;
-
-    background:
-
-        radial-gradient(
-            circle at 35% 30%,
-            #fffef4 0%,
-            #fff6ce 38%,
-            #ffdd83 70%,
-            #ffc657 100%
-        );
-
-    box-shadow:
-
-        0 0 30px
-        rgba(255, 224, 140, .8),
-
-        0 0 80px
-        rgba(255, 211, 103, .45),
-
-        0 0 150px
-        rgba(255, 195, 80, .25);
-}
+========================== */
 
 
-.moon.show {
-
-    animation:
-        moonRise 2.6s ease forwards;
-}
+.moon{
 
 
-@keyframes moonRise {
-
-    0% {
-
-        transform:
-            translate(-50%, 180px)
-            scale(.25);
-
-        opacity: 0;
-    }
-
-    60% {
-        opacity: 1;
-    }
-
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-
-        opacity: 1;
-    }
-}
+position:absolute;
 
 
-/* =========================
-   文案区域
-========================= */
+left:50%;
 
-.message-panel {
-
-    position: absolute;
-
-    left: 50%;
-    top: 43%;
-
-    width: min(86vw, 520px);
-
-    transform:
-        translate(-50%, 30px);
-
-    text-align: center;
-
-    opacity: 0;
-
-    color: #fff7df;
-
-    z-index: 10;
-
-    transition:
-        opacity 1.5s ease,
-        transform 1.5s ease;
-}
+top:22%;
 
 
-.message-panel.show {
+width:160px;
 
-    opacity: 1;
-
-    transform:
-        translate(-50%, 0);
-}
+height:160px;
 
 
-.festival-title {
+transform:
 
-    font-family: serif;
+translate(-50%,-50%);
 
-    font-size: 30px;
 
-    letter-spacing: 7px;
+border-radius:50%;
 
-    color: #ffe2a0;
 
-    margin-bottom: 15px;
+background:
 
-    text-shadow:
+radial-gradient(
+circle at 35% 30%,
+#fffdf3,
+#ffe7a0 55%,
+#ffc968
+);
 
-        0 0 20px
-        rgba(255, 213, 125, .3);
+
+box-shadow:
+
+
+0 0 40px
+rgba(255,225,140,.9),
+
+
+0 0 120px
+rgba(255,215,100,.5);
+
+
+cursor:pointer;
+
+
+transition:
+
+all 2s ease;
+
+
+z-index:5;
+
+
 }
 
 
 
-/* =========================
-   月光祝福卡片
-========================= */
+.moon.active{
 
-.blessing-card {
-    position: relative;
-    width: 100%;
-    padding: 28px 22px 30px;
-    background: linear-gradient(
-        145deg,
-        rgba(255,245,210,.13),
-        rgba(255,255,255,.05)
-    );
-    border: 1px solid rgba(255,225,160,.30);
-    border-radius: 28px;
-    backdrop-filter: blur(18px);
-    box-shadow:
-        0 0 35px rgba(255,220,150,.15),
-        inset 0 0 25px rgba(255,255,255,.05);
-    overflow: hidden;
-}
 
-.card-light {
-    position:absolute;
-    width:140px;
-    height:140px;
-    right:-50px;
-    top:-50px;
-    background: radial-gradient(
-        circle,
-        rgba(255,230,160,.35),
-        transparent 70%
-    );
-    filter:blur(12px);
-}
+left:22%;
 
-#blessing {
-    position:relative;
-    z-index:2;
-}
+top:18%;
 
-.style-name {
 
-    display: inline-block;
+width:145px;
 
-    margin-bottom: 18px;
+height:145px;
 
-    padding:
-        5px 14px;
 
-    border:
-
-        1px solid
-        rgba(255, 220, 145, .3);
-
-    border-radius: 30px;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-
-    color:
-        rgba(255, 230, 174, .75);
-
-    background:
-        rgba(255, 255, 255, .04);
-
-    backdrop-filter:
-        blur(10px);
 }
 
 
-#blessing {
 
-    min-height: 155px;
 
-    display: flex;
+.moon-glow{
 
-    justify-content: center;
-    align-items: center;
 
-    font-family: serif;
+position:absolute;
 
-    font-size: 17px;
 
-    line-height: 2;
+left:50%;
 
-    letter-spacing: 2px;
+top:22%;
 
-    white-space: pre-line;
 
-    text-shadow:
+width:400px;
 
-        0 0 10px
-        rgba(255, 210, 130, .2);
+height:400px;
 
-    transition:
-        opacity .4s ease,
-        transform .4s ease;
+
+transform:
+
+translate(-50%,-50%);
+
+
+border-radius:50%;
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,225,140,.25),
+transparent 70%
+);
+
+
+transition:
+
+all 2s ease;
+
+
 }
 
 
-#blessing.changing {
 
-    opacity: 0;
+.moon-glow.active{
 
-    transform:
-        translateY(8px);
+
+left:22%;
+
+top:18%;
+
+
 }
 
 
-/* =========================
-   按钮
-========================= */
 
-.buttons {
+/* ==========================
+   云层
+========================== */
 
-    display: flex;
 
-    justify-content: center;
+.cloud{
 
-    gap: 12px;
 
-    margin-top: 22px;
+position:absolute;
+
+
+width:220px;
+
+height:55px;
+
+
+background:
+
+rgba(255,255,255,.10);
+
+
+border-radius:50px;
+
+
+filter:blur(5px);
+
+
+animation:
+
+cloudMove 35s infinite ease-in-out;
+
+
 }
 
 
-button {
+.cloud:before,
+.cloud:after{
 
-    border:
 
-        1px solid
-        rgba(255, 226, 167, .25);
+content:"";
 
-    background:
-        rgba(255, 255, 255, .06);
+position:absolute;
 
-    color: #ffe9bd;
 
-    padding:
-        10px 17px;
+background:
 
-    border-radius: 30px;
+rgba(255,255,255,.10);
 
-    font-size: 13px;
 
-    letter-spacing: 1px;
+border-radius:50%;
 
-    backdrop-filter:
-        blur(10px);
 
-    cursor: pointer;
-
-    transition:
-        .25s ease;
 }
 
 
-button:active {
 
-    transform:
-        scale(.94);
+.cloud:before{
 
-    background:
-        rgba(255, 220, 150, .12);
+width:80px;
+
+height:80px;
+
+left:35px;
+
+top:-35px;
+
 }
 
 
-/* =========================
-   署名
-========================= */
 
-.signature {
+.cloud:after{
 
-    margin-top: 18px;
+width:60px;
 
-    font-size: 12px;
+height:60px;
 
-    letter-spacing: 3px;
+left:120px;
 
-    color:
-        rgba(255, 220, 155, .55);
+top:-20px;
+
 }
 
 
-/* =========================
-   开场
-========================= */
 
-#cover {
+.cloud1{
 
-    position: fixed;
-    inset: 0;
+top:20%;
 
-    z-index: 999;
+left:5%;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 45%,
-            #25345e,
-            #090d20 68%
-        );
-
-    color: #ffe7ae;
-
-    transition:
-        opacity 1.2s ease;
 }
 
 
-.cover-moon {
 
-    font-size: 72px;
+.cloud2{
 
-    margin-bottom: 30px;
+top:30%;
 
-    animation:
-        breathe 2.3s infinite alternate;
+left:55%;
+
+animation-duration:45s;
+
 }
 
 
-@keyframes breathe {
 
-    from {
 
-        transform:
-            scale(.95);
+@keyframes cloudMove{
 
-        filter:
 
-            drop-shadow(
-                0 0 8px
-                rgba(255, 219, 120, .3)
-            );
-    }
+50%{
 
-    to {
+transform:
 
-        transform:
-            scale(1.08);
+translateX(80px);
 
-        filter:
-
-            drop-shadow(
-                0 0 35px
-                rgba(255, 219, 120, .9)
-            );
-    }
 }
 
 
-#cover h1 {
-
-    font-family: serif;
-
-    font-weight: normal;
-
-    font-size: 23px;
-
-    letter-spacing: 5px;
 }
 
 
-#cover p {
 
-    margin-top: 18px;
+/* ==========================
+   流星
+========================== */
 
-    font-size: 13px;
 
-    letter-spacing: 2px;
+.meteor{
 
-    color:
-        rgba(255, 255, 255, .5);
 
-    animation:
-        hintBlink 1.8s infinite;
+position:absolute;
+
+
+width:120px;
+
+height:2px;
+
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+white
+);
+
+
+transform:
+
+rotate(-30deg);
+
+
+opacity:0;
+
+
 }
 
 
-@keyframes hintBlink {
 
-    0%,
-    100% {
-
-        opacity: .3;
-    }
-
-    50% {
-
-        opacity: 1;
-    }
-}
-
-
-/* =========================
-   飘落 / 飘升粒子
-========================= */
-
-.floating {
-
-    position: absolute;
-
-    bottom: -50px;
-
-    pointer-events: none;
-
-    z-index: 5;
-
-    animation:
-        floatingUp linear forwards;
-}
-
-
-@keyframes floatingUp {
-
-    0% {
-
-        transform:
-
-            translateY(0)
-
-            rotate(0deg);
-
-        opacity: 0;
-    }
-
-    10% {
-
-        opacity: .8;
-    }
-
-    100% {
-
-        transform:
-
-            translateY(-120vh)
-
-            rotate(50deg);
-
-        opacity: 0;
-    }
-}
-
-
-/* =========================
+/* ==========================
    烟花 canvas
-========================= */
+========================== */
 
-#fireworks {
 
-    position: absolute;
+#fireworks{
 
-    inset: 0;
 
-    width: 100%;
-    height: 100%;
+position:absolute;
 
-    pointer-events: none;
 
-    z-index: 4;
+inset:0;
+
+
+z-index:3;
+
+
+pointer-events:none;
+
 }
 
 
-/* =========================
-   底部文字
-========================= */
+
+/* ==========================
+   孔明灯
+========================== */
 
 
-/* =========================
-   云层 / 流星 / 小动物
-========================= */
+.lantern{
 
-.cloud {
-    position:absolute;
-    width:180px;
-    height:50px;
-    background:rgba(255,255,255,.10);
-    border-radius:50px;
-    filter:blur(3px);
-    animation:cloudMove 24s infinite ease-in-out;
+
+position:absolute;
+
+
+bottom:-80px;
+
+
+font-size:35px;
+
+
+z-index:4;
+
+
+opacity:.8;
+
+
 }
 
-.cloud1 {
-    left:10%;
-    top:18%;
+
+
+/* ==========================
+   草坡
+========================== */
+
+
+.grass{
+
+
+position:absolute;
+
+
+bottom:-15%;
+
+
+left:50%;
+
+
+transform:
+
+translateX(-50%);
+
+
+width:140%;
+
+
+height:45%;
+
+
+border-radius:
+
+50% 50% 0 0;
+
+
+background:
+
+
+linear-gradient(
+180deg,
+#172235,
+#050913
+);
+
+
+
+z-index:2;
+
+
 }
 
-.cloud2 {
-    left:45%;
-    top:28%;
-    animation-duration:32s;
-}
 
-@keyframes cloudMove {
-    50% {
-        transform:translateX(40px);
-    }
-}
 
-.meteor {
-    position:absolute;
-    width:120px;
-    height:2px;
-    background:linear-gradient(
-        to right,
-        transparent,
-        #fff2c0
-    );
-    top:18%;
-    right:10%;
-    transform:rotate(-25deg);
-    animation:meteorMove 5s infinite;
-}
+/* ==========================
+   坐在草地上的朋友剪影
+========================== */
 
-@keyframes meteorMove {
-    0%,70% {
-        opacity:0;
-        transform:translate(0,0) rotate(-25deg);
-    }
-    75% {
-        opacity:1;
-    }
-    100% {
-        opacity:0;
-        transform:translate(-180px,100px) rotate(-25deg);
-    }
-}
 
-.animal-friends {
-    position:absolute;
-    bottom:12%;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:70px;
-    display:flex;
+.people{
+
+    bottom:13%;
+
     gap:25px;
-    z-index:6;
-    filter:drop-shadow(0 8px 12px rgba(0,0,0,.3));
+
 }
 
-.rabbit,
-.fox {
-    animation:animalBreath 3s infinite ease-in-out;
+
+
+.person{
+
+    width:80px;
+
+    height:90px;
+
     position:relative;
+
 }
 
-.fox {
-    animation-delay:.6s;
-}
 
-@keyframes animalBreath {
-    50% {
-        transform:translateY(-5px);
-    }
-}
 
-.scarf,
-.tail {
+/* 头 */
+
+.head{
+
     position:absolute;
-    font-size:28px;
-    color:#ffd98a;
-}
 
-.scarf {
+    top:0;
+
     left:25px;
-    bottom:12px;
-}
 
-.tail {
-    right:-10px;
-    bottom:5px;
-}
+    width:30px;
 
-.footer {
+    height:30px;
 
-    position: absolute;
+    border-radius:50%;
 
-    bottom: 22px;
+    background:#05070c;
 
-    width: 100%;
-
-    text-align: center;
-
-    color:
-        rgba(255, 255, 255, .25);
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    z-index: 3;
 }
 
 
-/* =========================
-   手机适配
-========================= */
 
-@media
-(max-height: 720px) {
+/* 身体（坐姿） */
 
-    .moon {
+.body{
 
-        width: 120px;
-        height: 120px;
+    position:absolute;
 
-        top: 19%;
-    }
+    top:28px;
 
-    .moon-glow {
+    left:18px;
 
-        top: 19%;
-    }
+    width:45px;
 
-    .message-panel {
+    height:38px;
 
-        top: 36%;
-    }
+    border-radius:
 
-    #blessing {
+    20px 20px 8px 8px;
 
-        min-height: 130px;
+    background:#05070c;
 
-        font-size: 15px;
-
-        line-height: 1.8;
-    }
 }
+
+
+
+/* 坐着伸出的腿 */
+
+.leg{
+
+    position:absolute;
+
+    bottom:10px;
+
+    width:45px;
+
+    height:8px;
+
+    background:#05070c;
+
+    border-radius:10px;
+
+}
+
+
+
+/* 左腿 */
+
+.leg.left{
+
+    left:5px;
+
+    transform:
+
+    rotate(8deg);
+
+}
+
+
+/* 右腿 */
+
+.leg.right{
+
+    right:0;
+
+    transform:
+
+    rotate(-8deg);
+
+}
+/* ==========================
+   祝福卡片
+========================== */
+
+
+.message{
+
+
+position:absolute;
+
+
+left:50%;
+
+
+top:42%;
+
+
+transform:
+
+translate(-50%,-50%);
+
+
+width:min(88vw,520px);
+
+
+z-index:10;
+
+
+text-align:center;
+
+
+color:#fff4d5;
+
+
+opacity:0;
+
+
+transition:
+
+opacity 1.5s ease;
+
+
+}
+
+
+
+.message.show{
+
+
+opacity:1;
+
+
+}
+
+
+
+
+.title{
+
+
+font-size:32px;
+
+
+letter-spacing:8px;
+
+
+color:#ffe4a0;
+
+
+margin-bottom:20px;
+
+
+}
+
+
+
+
+.blessing-card{
+
+
+position:relative;
+
+
+padding:30px;
+
+
+border-radius:28px;
+
+
+background:
+
+rgba(255,245,220,.08);
+
+
+border:
+
+1px solid
+rgba(255,220,150,.3);
+
+
+
+backdrop-filter:
+
+blur(15px);
+
+
+
+box-shadow:
+
+
+0 0 40px
+rgba(255,220,150,.15);
+
+
+overflow:hidden;
+
+
+}
+
+
+
+.card-light{
+
+
+position:absolute;
+
+
+right:-50px;
+
+
+top:-50px;
+
+
+width:160px;
+
+
+height:160px;
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,230,160,.4),
+transparent 70%
+);
+
+
+
+filter:blur(15px);
+
+
+}
+
+
+
+.style-name{
+
+
+font-size:13px;
+
+
+letter-spacing:3px;
+
+
+color:#ffd98c;
+
+
+margin-bottom:18px;
+
+
+}
+
+
+
+#blessing{
+
+
+font-size:18px;
+
+
+line-height:2;
+
+
+letter-spacing:2px;
+
+
+white-space:pre-line;
+
+
+font-family:
+
+"STKaiti",
+"KaiTi",
+serif;
+
+
+}
+
+
+
+.buttons{
+
+
+margin-top:25px;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+gap:12px;
+
+
+}
+
+
+
+button{
+
+
+padding:10px 18px;
+
+
+border-radius:30px;
+
+
+border:
+
+1px solid
+rgba(255,220,150,.3);
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+color:#ffe9b0;
+
+
+cursor:pointer;
+
+
+}
+
+
+
+
+.footer{
+
+
+position:absolute;
+
+
+bottom:15px;
+
+
+width:100%;
+
+
+text-align:center;
+
+
+font-size:11px;
+
+
+letter-spacing:4px;
+
+
+color:
+
+rgba(255,255,255,.3);
+
+
+}
+
+
+
 
 </style>
+
+
 </head>
-
-
 <body>
 
 
 <div id="scene">
 
-    <canvas id="fireworks"></canvas>
 
-    <div
-        class="moon-glow"
-        id="moonGlow"
-    ></div>
-
-    <div
-        class="moon"
-        id="moon"
-    ></div>
-
-
-    <div
-        class="message-panel"
-        id="messagePanel"
-    >
-
-        <div class="festival-title">
-
-            月满 · 中秋
-
-        </div>
-
-
-        <div class="blessing-card">
-
-            <div class="card-light"></div>
-
-            <div
-                class="style-name"
-                id="styleName"
-            >
-
-                温柔治愈
-
-            </div>
-
-
-            <div id="blessing"></div>
-
-        </div>
-
-
-        <div class="buttons">
-
-            <button
-                onclick="changeBlessing()"
-            >
-
-                换一句
-
-            </button>
-
-
-            <button
-                onclick="changeStyle()"
-            >
-
-                换个风格
-
-            </button>
-
-            <button onclick="relightMoon()">
-                重新点亮月亮
-            </button>
-
-        </div>
-
-
-        <div
-            class="signature"
-            id="signature"
-        >
-
-            写给今晚看月亮的你
-
-        </div>
-
-    </div>
-
-
-
-<!-- 云层 -->
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-<div class="meteor" id="meteor"></div>
-
-<!-- 好朋友小动物 -->
-<div class="animal-friends">
-    <div class="rabbit">
-        🐰
-        <span class="scarf">〰</span>
-    </div>
-    <div class="fox">
-        🦊
-        <span class="tail">〰</span>
-    </div>
-</div>
-
-    <div class="footer">
-
-        MID-AUTUMN · 2026
-
-    </div>
-
-</div>
-
-
+<!-- 开场遮罩 -->
 
 <div id="cover">
 
     <div class="cover-moon">
-
         🌕
-
     </div>
 
     <h1>
-
         今晚的月亮还没亮
-
     </h1>
 
     <p>
-
-        点击屏幕 · 点亮它
-
+        点击月亮 · 点亮中秋夜
     </p>
 
 </div>
 
 
 
+<!-- 月亮 -->
+
+<div class="moon-glow" id="moonGlow"></div>
+
+<div class="moon" id="moon">
+
+</div>
+
+
+
+
+<!-- 云 -->
+
+<div class="cloud cloud1"></div>
+
+<div class="cloud cloud2"></div>
+
+
+
+<!-- 烟花 -->
+
+<canvas id="fireworks"></canvas>
+
+
+
+
+<!-- 草坡 -->
+
+<div class="grass"></div>
+
+
+
+
+<!-- 人物剪影 -->
+
+<div class="people">
+
+
+    <!-- 左边人物 -->
+
+    <div class="person">
+
+
+        <div class="head"></div>
+
+        <div class="body"></div>
+
+
+        <div class="leg left"></div>
+
+        <div class="leg right"></div>
+
+
+    </div>
+
+
+
+    <!-- 右边人物 -->
+
+
+    <div class="person">
+
+
+        <div class="head"></div>
+
+        <div class="body"></div>
+
+
+        <div class="leg left"></div>
+
+        <div class="leg right"></div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+<!-- 祝福 -->
+
+<div class="message" id="message">
+
+
+    <div class="title">
+
+        月满 · 中秋
+
+    </div>
+
+
+
+    <div class="blessing-card">
+
+
+        <div class="card-light"></div>
+
+
+
+        <div
+        class="style-name"
+        id="styleName">
+
+        月光寄语
+
+        </div>
+
+
+
+        <div id="blessing">
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="buttons">
+
+
+        <button onclick="newBlessing()">
+
+            换一句
+
+        </button>
+
+
+        <button onclick="relightMoon()">
+
+            重新点亮月亮
+
+        </button>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="footer">
+
+    Moonlight Letter · 2026
+
+</div>
+
+
+
+</div>
+
+
+
+
+
 <script>
+/* =====================================
+   组合式诗意祝福生成器
+===================================== */
 
-/* ==================================================
-   祝福文字库
-================================================== */
 
-const blessingStyles = {
+const blessingPool = {
 
 
-    gentle: {
+opening:[
 
-        name: "温柔治愈",
+"今夜月色温柔，",
 
-        messages: [
+"一轮明月照人间，",
 
-`愿这个中秋，
-月亮替你收藏所有疲惫。
+"桂香随着晚风而来，",
 
-愿今后的日子，
-有人懂你的沉默，
-也有人珍惜你的温柔。`,
+"月上中天，清辉满庭，",
 
+"在这一年一度的团圆夜，",
 
-`月亮慢慢变圆，
-好事也会慢慢靠近。
+"今晚的天空很安静，"
 
-愿你所期待的一切，
-都在不远的未来
-悄悄发生。`,
+],
 
 
-`愿今晚的月光，
-照亮你的窗，
-也照亮那些
-还没有答案的远方。
 
-中秋快乐，
-愿你平安，也愿你自在。`,
+scene:[
 
+"清辉落在窗前，也落在心上。",
 
-`希望你不用事事圆满，
-也依然能够喜欢
-此刻并不完美的生活。
+"愿这一刻的宁静，陪伴每一个认真生活的人。",
 
-愿月圆，
-也愿你心安。`,
+"远方与此刻，都被同一轮月亮温柔照亮。",
 
+"风吹桂香，星河微亮，万物都在诉说温柔。",
 
-`愿你走过的路都有回响，
-等待的人终会相见。
+"即使相隔不同地方，也共享这一片月光。",
 
-这个中秋，
-愿所有思念都有归处。`
+"愿这份简单的美好，在心里停留很久。"
 
-        ]
-    },
+],
 
 
-    romantic: {
 
-        name: "浪漫含蓄",
+wish:[
 
-        messages: [
+"愿你所念皆有回应，所行皆有收获。",
 
-`人们说，
-月亮圆的时候适合思念。
+"愿你的未来有光，有梦，也有同行的人。",
 
-所以今晚，
-我很自然地
-想起了你。`,
+"愿忙碌的日子里，也拥有属于自己的安宁。",
 
+"愿每一次努力都不会被辜负，每一个期待都有回响。",
 
-`今晚的月色很好。
+"愿你一路有风景，也有人陪伴。",
 
-如果你也刚好抬头，
-那我们就算
-一起看过月亮了。`,
+"愿岁岁平安，常有欢喜。"
 
+],
 
-`月亮绕过山河，
-把光落在人间。
 
-而我所有漫长的想念，
-最后都停在了你这里。`,
 
+ending:[
 
-`我原本只是想
-祝你中秋快乐。
+"中秋快乐，愿你被温柔以待。",
 
-可月亮太漂亮，
-于是又忍不住
-多想了你一会儿。`,
+"愿这一轮明月，替我送去祝福。",
 
+"愿未来的日子，如月光一般明亮。",
 
-`希望以后很多个
-月圆的晚上，
+"愿山长水远，我们依旧常怀美好。",
 
-我不用隔着屏幕
-告诉你月亮很好看。`
+"愿此后每一天，都有值得期待的事情。"
 
-        ]
-    },
-
-
-    poetry: {
-
-        name: "古风诗意",
-
-        messages: [
-
-`月上中天，
-清辉满庭。
-
-愿君此夜无忧，
-所念皆安，
-所行皆坦。`,
-
-
-`一轮秋影转金波，
-万里清辉照人间。
-
-愿此后岁岁长安，
-朝朝如愿，
-月月皆圆。`,
-
-
-`山河远阔，
-人间烟火。
-
-愿清风明月常伴，
-故人与新知皆在，
-平安喜乐长存。`,
-
-
-`桂影扶疏，
-月色如水。
-
-愿君此生
-有花可赏，
-有月可邀，
-有人可念。`,
-
-
-`月满一轮，
-秋意一程。
-
-愿所求皆得，
-所念皆安，
-岁月静好，
-故人长伴。`
-
-        ]
-    },
-
-
-    cute: {
-
-        name: "俏皮可爱",
-
-        messages: [
-
-`通知一下：
-
-今晚的月亮很圆，
-月饼很好吃，
-而你——
-
-也要负责开心！`,
-
-
-`中秋限定任务：
-
-吃月饼 ✓
-看月亮 ✓
-早点睡 ✓
-
-最后一项：
-
-今天也要喜欢自己一点。`,
-
-
-`月亮今天
-努力圆成了这样，
-
-你就不要皱眉啦。
-
-中秋快乐！
-快乐也要圆圆满满。`,
-
-
-`今晚允许你：
-
-多吃一块月饼，
-多看一会儿月亮，
-少想一点烦恼。
-
-批准！`,
-
-
-`月饼有很多馅，
-
-但我希望你的生活
-只有一种馅：
-
-开心馅。`
-
-        ]
-    },
-
-
-    friend: {
-
-        name: "朋友祝福",
-
-        messages: [
-
-`认识你之后，
-很多普通的日子
-都多了一点意思。
-
-祝我们
-各自努力，
-顶峰相见。
-
-中秋快乐。`,
-
-
-`不用经常见面，
-不用天天联系。
-
-真正的朋友
-就是隔了很久再见，
-还是能一秒回到从前。
-
-中秋快乐。`,
-
-
-`愿我们有各自的远方，
-也永远有能够
-坐下来聊很久的晚上。
-
-中秋快乐，
-老朋友。`,
-
-
-`祝你不仅今天快乐。
-
-祝你很多年后回头看，
-会觉得这些日子
-都值得。`,
-
-
-`愿你一路有风景，
-有人同行，
-也有独自前行的勇气。
-
-中秋快乐。`
-
-        ]
-    },
-
-
-    family: {
-
-        name: "家人祝福",
-
-        messages: [
-
-`月亮一年比一年圆，
-我们也一年一年长大。
-
-愿家人平安，
-灯火常在，
-团圆常有。`,
-
-
-`所谓团圆，
-或许不是每一次
-都坐在同一张桌前。
-
-而是不论走多远，
-心里始终知道
-哪里是家。`,
-
-
-`愿父母身体健康，
-愿家人平安顺遂。
-
-愿我们忙碌之后，
-仍有时间
-好好坐在一起吃顿饭。`,
-
-
-`世间很多愿望
-都会改变。
-
-但希望家人
-平安健康这件事，
-永远不会。`,
-
-
-`月圆人安，
-家和事顺。
-
-愿往后的每一年，
-家里的灯
-都为我们亮着。`
-
-        ]
-    }
+]
 
 };
 
 
 
-/* ==================================================
-   URL 个性化名字
-   示例：
-   ?to=小王&from=Nuoshiyi
-================================================== */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
 
 
-const toName =
-    params.get("to");
+/* 研究生隐藏彩蛋 */
 
 
-const fromName =
-    params.get("from");
+const graduateBlessing = [
+
+"今夜暂放下实验与论文，\n"+
+"抬头看看这一轮明月。\n\n"+
+"愿你的数据顺利收敛，\n"+
+"代码不再报错，\n"+
+"思路越来越清晰。\n\n"+
+"愿忙碌之外，也有属于自己的月光。",
 
 
-if (toName) {
+"愿你的实验顺利，\n"+
+"模型稳定，结果显著。\n\n"+
+"也愿你在追逐目标的路上，\n"+
+"不要忘记欣赏沿途的星光。"
 
-    document.getElementById(
-        "signature"
-    ).innerText =
-
-        `写给 ${toName}`;
-}
-
-
-if (fromName) {
-
-    document.getElementById(
-        "signature"
-    ).innerText +=
-
-        ` · ${fromName}`;
-}
+];
 
 
 
-/* ==================================================
-   当前风格
-================================================== */
-
-const styleKeys =
-    Object.keys(
-        blessingStyles
-    );
 
 
-let currentStyle =
-    styleKeys[
-        Math.floor(
-            Math.random()
-            * styleKeys.length
-        )
-    ];
+function random(arr){
 
+return arr[
+Math.floor(Math.random()*arr.length)
+];
 
-/* ==================================================
-   显示祝福
-================================================== */
-
-function showRandomBlessing() {
-
-    const style =
-        blessingStyles[
-            currentStyle
-        ];
-
-
-    const messages =
-        style.messages;
-
-
-    const message =
-
-        messages[
-            Math.floor(
-                Math.random()
-                * messages.length
-            )
-        ];
-
-
-    document.getElementById(
-        "styleName"
-    ).innerText =
-        style.name;
-
-
-    const blessing =
-        document.getElementById(
-            "blessing"
-        );
-
-
-    blessing.classList.add(
-        "changing"
-    );
-
-
-    setTimeout(() => {
-
-        blessing.innerText =
-            message;
-
-        blessing.classList.remove(
-            "changing"
-        );
-
-    }, 350);
-}
-
-
-
-/* ==================================================
-   同风格换一句
-================================================== */
-
-function changeBlessing() {
-
-    showRandomBlessing();
-
-    smallFirework();
-}
-
-
-
-/* ==================================================
-   换风格
-================================================== */
-
-function changeStyle() {
-
-    const others =
-        styleKeys.filter(
-            key =>
-            key !== currentStyle
-        );
-
-
-    currentStyle =
-
-        others[
-            Math.floor(
-                Math.random()
-                * others.length
-            )
-        ];
-
-
-    showRandomBlessing();
-
-    bigFirework();
 }
 
 
 
 
-function relightMoon() {
-    const moon = document.getElementById("moon");
-    const glow = document.getElementById("moonGlow");
 
-    moon.classList.remove("show");
-    glow.classList.remove("show");
-
-    void moon.offsetWidth;
-
-    setTimeout(()=>{
-        moon.classList.add("show");
-        glow.classList.add("show");
-        showRandomBlessing();
-        bigFirework();
-    },100);
-}
-
-/* ==================================================
-   星星
-================================================== */
-
-const scene =
-    document.getElementById(
-        "scene"
-    );
+function generateBlessing(){
 
 
-for (
-    let i = 0;
-    i < 130;
-    i++
-) {
+/*
 
-    const star =
-        document.createElement(
-            "div"
-        );
+10%概率研究生彩蛋
+
+*/
 
 
-    star.className =
-        "star";
+if(Math.random()<0.1){
 
 
-    star.style.left =
-        Math.random()
-        * 100
-        + "%";
+return {
+
+style:"月光彩蛋",
+
+text:
+random(graduateBlessing)
+
+};
 
 
-    star.style.top =
-        Math.random()
-        * 80
-        + "%";
-
-
-    const size =
-        Math.random()
-        * 2
-        + .7;
-
-
-    star.style.width =
-        size
-        + "px";
-
-
-    star.style.height =
-        size
-        + "px";
-
-
-    star.style.animationDelay =
-        Math.random()
-        * 3
-        + "s";
-
-
-    star.style.animationDuration =
-
-        1.5
-        + Math.random()
-        * 3
-        + "s";
-
-
-    scene.appendChild(
-        star
-    );
 }
 
 
 
-/* ==================================================
-   开场
-================================================== */
+return {
+
+
+style:"月光寄语",
+
+
+text:
+
+random(blessingPool.opening)
+
++
+
+"\n"
+
++
+
+random(blessingPool.scene)
+
++
+
+"\n\n"
+
++
+
+random(blessingPool.wish)
+
++
+
+"\n"
+
++
+
+random(blessingPool.ending)
+
+
+};
+
+
+}
+
+
+
+
+
+
+function showBlessing(){
+
+
+let result=generateBlessing();
+
+
+document.getElementById(
+"styleName"
+).innerText=result.style;
+
+
+
+document.getElementById(
+"blessing"
+).innerText=result.text;
+
+
+
+}
+
+
+
+function newBlessing(){
+
+
+showBlessing();
+
+
+smallFirework();
+
+
+}
+/* =====================================
+   点击月亮
+===================================== */
+
+
+const moon =
+document.getElementById("moon");
+
+
+const moonGlow =
+document.getElementById("moonGlow");
+
 
 const cover =
-    document.getElementById(
-        "cover"
-    );
+document.getElementById("cover");
 
 
-let started =
-    false;
+const message =
+document.getElementById("message");
 
 
-cover.addEventListener(
-    "click",
-    startExperience
-);
+
+let started=false;
 
 
-function startExperience() {
 
-    if (started)
-        return;
+moon.onclick=function(){
 
 
-    started =
-        true;
+if(started)
+return;
 
 
-    cover.style.opacity =
-        0;
+started=true;
 
 
-    setTimeout(() => {
 
-        cover.style.display =
-            "none";
-
-    }, 1200);
+moon.classList.add("active");
 
 
-    document.getElementById(
-        "moon"
-    ).classList.add(
-        "show"
-    );
+moonGlow.classList.add("active");
 
 
-    document.getElementById(
-        "moonGlow"
-    ).classList.add(
-        "show"
-    );
+
+cover.style.opacity=0;
 
 
-    showRandomBlessing();
+
+setTimeout(()=>{
+
+cover.style.display="none";
 
 
-    setTimeout(() => {
-
-        document.getElementById(
-            "messagePanel"
-        ).classList.add(
-            "show"
-        );
-
-    }, 1600);
+},1200);
 
 
-    setTimeout(
-        bigFirework,
-        1200
-    );
 
 
-    setTimeout(
-        startFloating,
-        1700
-    );
+
+setTimeout(()=>{
+
+
+message.classList.add("show");
+
+
+showBlessing();
+
+
+startFireworks();
+
+
+startLantern();
+
+
+startMeteor();
+
+
+
+},1800);
+
+
+
+};
+
+
+
+
+/* =====================================
+   重新点亮
+===================================== */
+
+
+function relightMoon(){
+
+
+moon.classList.remove("active");
+
+moonGlow.classList.remove("active");
+
+
+void moon.offsetWidth;
+
+
+setTimeout(()=>{
+
+
+moon.classList.add("active");
+
+moonGlow.classList.add("active");
+
+
+showBlessing();
+
+
+bigFirework();
+
+
+
+},100);
+
+
+}
+/* =====================================
+   星空生成
+===================================== */
+
+const scene =
+document.getElementById("scene");
+
+
+for(let i=0;i<90;i++){
+
+
+    const star=
+    document.createElement("div");
+
+
+    star.className="star";
+
+
+    star.style.left=
+    Math.random()*100+"%";
+
+
+    star.style.top=
+    Math.random()*75+"%";
+
+
+    const size=
+    Math.random()*2+1;
+
+
+    star.style.width=
+    size+"px";
+
+
+    star.style.height=
+    size+"px";
+
+
+    star.style.animationDuration=
+    (2+Math.random()*3)+"s";
+
+
+    star.style.animationDelay=
+    Math.random()*2+"s";
+
+
+    scene.appendChild(star);
+
+
 }
 
 
 
-/* ==================================================
-   漂浮粒子
-================================================== */
 
-function createFloating() {
-
-    const element =
-        document.createElement(
-            "div"
-        );
-
-
-    element.className =
-        "floating";
-
-
-    const symbols = [
-
-        "✦",
-        "✧",
-        "✨",
-        "🏮",
-        "♡"
-
-    ];
-
-
-    element.innerText =
-
-        symbols[
-            Math.floor(
-                Math.random()
-                * symbols.length
-            )
-        ];
-
-
-    element.style.left =
-
-        Math.random()
-        * 100
-        + "%";
-
-
-    element.style.fontSize =
-
-        12
-        + Math.random()
-        * 17
-        + "px";
-
-
-    element.style.animationDuration =
-
-        7
-        + Math.random()
-        * 8
-        + "s";
-
-
-    scene.appendChild(
-        element
-    );
-
-
-    setTimeout(() => {
-
-        element.remove();
-
-    }, 16000);
-}
-
-
-function startFloating() {
-
-    setInterval(
-        createFloating,
-        900
-    );
-}
-
-
-
-/* ==================================================
-   烟花
-================================================== */
+/* =====================================
+   烟花 canvas
+===================================== */
 
 const canvas =
-    document.getElementById(
-        "fireworks"
-    );
+document.getElementById("fireworks");
 
 
 const ctx =
-    canvas.getContext(
-        "2d"
-    );
+canvas.getContext("2d");
 
 
-let particles =
-    [];
+let particles=[];
 
 
-function resizeCanvas() {
 
-    const ratio =
-        window.devicePixelRatio
-        || 1;
+function resizeCanvas(){
 
 
-    canvas.width =
-        window.innerWidth
-        * ratio;
+    const ratio=
+    window.devicePixelRatio||1;
 
 
-    canvas.height =
-        window.innerHeight
-        * ratio;
+    canvas.width=
+    window.innerWidth*ratio;
 
 
-    canvas.style.width =
-        window.innerWidth
-        + "px";
+    canvas.height=
+    window.innerHeight*ratio;
 
 
-    canvas.style.height =
-        window.innerHeight
-        + "px";
+    canvas.style.width=
+    window.innerWidth+"px";
+
+
+    canvas.style.height=
+    window.innerHeight+"px";
 
 
     ctx.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
+    ratio,0,0,ratio,0,0
     );
+
+
 }
 
 
@@ -1759,209 +1687,179 @@ resizeCanvas();
 
 
 window.addEventListener(
-    "resize",
-    resizeCanvas
+"resize",
+resizeCanvas
 );
 
 
 
-class Particle {
 
-    constructor(
-        x,
-        y,
-        color
-    ) {
-
-        this.x =
-            x;
+class Particle{
 
 
-        this.y =
-            y;
+    constructor(x,y,color){
 
 
-        const angle =
-
-            Math.random()
-            * Math.PI
-            * 2;
+        this.x=x;
+        this.y=y;
 
 
-        const speed =
-
-            Math.random()
-            * 4
-            + 1;
+        const angle=
+        Math.random()*Math.PI*2;
 
 
-        this.vx =
-
-            Math.cos(angle)
-            * speed;
+        const speed=
+        Math.random()*4+1;
 
 
-        this.vy =
-
-            Math.sin(angle)
-            * speed;
+        this.vx=
+        Math.cos(angle)*speed;
 
 
-        this.alpha =
-            1;
+        this.vy=
+        Math.sin(angle)*speed;
 
 
-        this.color =
-            color;
+        this.alpha=1;
 
 
-        this.size =
+        this.color=color;
 
-            Math.random()
-            * 2
-            + 1;
+
+        this.size=
+        Math.random()*2+1;
+
+
     }
 
 
-    update() {
 
-        this.x +=
-            this.vx;
+    update(){
 
 
-        this.y +=
-            this.vy;
+        this.x+=this.vx;
+        this.y+=this.vy;
 
 
-        this.vy +=
-            .025;
+        this.vy+=0.025;
 
 
-        this.vx *=
-            .985;
+        this.vx*=0.985;
 
 
-        this.alpha -=
-            .012;
+        this.alpha-=0.012;
+
+
     }
 
 
-    draw() {
 
-        ctx.globalAlpha =
-            this.alpha;
+    draw(){
+
+
+        ctx.globalAlpha=
+        this.alpha;
 
 
         ctx.beginPath();
 
 
         ctx.arc(
-
-            this.x,
-            this.y,
-
-            this.size,
-
-            0,
-            Math.PI * 2
+        this.x,
+        this.y,
+        this.size,
+        0,
+        Math.PI*2
         );
 
 
-        ctx.fillStyle =
-            this.color;
+        ctx.fillStyle=
+        this.color;
 
 
         ctx.fill();
+
+
     }
+
+
 }
 
 
 
-function explode(
-    x,
-    y,
-    amount = 75
-) {
 
-    const colors = [
+function explode(x,y,amount=75){
 
-        "#ffe7a7",
-        "#ffd26d",
-        "#ffb5ca",
-        "#ffffff",
-        "#ffc879",
-        "#ffd9ef"
+
+    const colors=[
+
+    "#ffe7a7",
+    "#ffd26d",
+    "#ffb5ca",
+    "#ffffff",
+    "#ffc879",
+    "#ffd9ef"
 
     ];
 
 
-    const color =
-
-        colors[
-            Math.floor(
-                Math.random()
-                * colors.length
-            )
-        ];
+    const color=
+    colors[
+    Math.floor(
+    Math.random()*colors.length
+    )
+    ];
 
 
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
+    for(let i=0;i<amount;i++){
+
 
         particles.push(
-
-            new Particle(
-                x,
-                y,
-                color
-            )
+        new Particle(x,y,color)
         );
+
+
     }
+
+
 }
 
 
 
-function animate() {
+
+function animate(){
+
 
     ctx.clearRect(
-
-        0,
-        0,
-
-        window.innerWidth,
-        window.innerHeight
+    0,
+    0,
+    window.innerWidth,
+    window.innerHeight
     );
 
 
-    particles =
-        particles.filter(
-
-            particle =>
-            particle.alpha > 0
-        );
-
-
-    particles.forEach(
-
-        particle => {
-
-            particle.update();
-
-            particle.draw();
-        }
+    particles=
+    particles.filter(
+    p=>p.alpha>0
     );
 
 
-    ctx.globalAlpha =
-        1;
+    particles.forEach(p=>{
 
 
-    requestAnimationFrame(
-        animate
-    );
+        p.update();
+        p.draw();
+
+
+    });
+
+
+    ctx.globalAlpha=1;
+
+
+    requestAnimationFrame(animate);
+
+
 }
 
 
@@ -1969,102 +1867,308 @@ animate();
 
 
 
-function bigFirework() {
+
+function bigFirework(){
+
 
     explode(
+    window.innerWidth*0.22,
+    window.innerHeight*0.20,
+    80
+    );
 
-        innerWidth * .25,
-        innerHeight * .25,
 
+    setTimeout(()=>{
+
+
+        explode(
+        window.innerWidth*0.68,
+        window.innerHeight*0.18,
         80
-    );
-
-
-    setTimeout(() => {
-
-        explode(
-
-            innerWidth * .75,
-            innerHeight * .22,
-
-            80
         );
 
-    }, 450);
+
+    },450);
 
 
-    setTimeout(() => {
+
+    setTimeout(()=>{
+
 
         explode(
-
-            innerWidth * .5,
-            innerHeight * .16,
-
-            90
+        window.innerWidth*0.48,
+        window.innerHeight*0.12,
+        95
         );
 
-    }, 900);
+
+    },900);
+
+
 }
 
 
 
-function smallFirework() {
+
+function smallFirework(){
+
 
     explode(
-
-        innerWidth
-        * (
-            .2
-            + Math.random()
-            * .6
-        ),
-
-        innerHeight
-        * (
-            .12
-            + Math.random()
-            * .3
-        ),
-
-        55
+    window.innerWidth*(0.20+Math.random()*0.55),
+    window.innerHeight*(0.10+Math.random()*0.26),
+    55
     );
+
+
 }
 
 
 
-/* ==================================================
-   点击屏幕放小烟花
-================================================== */
+
+let fireworkTimer=null;
+
+
+
+function startFireworks(){
+
+
+    bigFirework();
+
+
+    fireworkTimer=
+    setInterval(()=>{
+
+
+        smallFirework();
+
+
+        if(Math.random()<0.45){
+
+            setTimeout(
+            smallFirework,
+            350
+            );
+
+        }
+
+
+    },3200);
+
+
+}
+
+
+
+
+/* =====================================
+   孔明灯
+===================================== */
+
+function createLantern(){
+
+
+    const lantern=
+    document.createElement("div");
+
+
+    lantern.className="lantern";
+
+
+    lantern.innerText="🏮";
+
+
+    lantern.style.left=
+    (10+Math.random()*80)+"%";
+
+
+    lantern.style.animation=
+    `lanternRise ${12+Math.random()*6}s linear forwards`;
+
+
+    lantern.style.fontSize=
+    (24+Math.random()*18)+"px";
+
+
+    scene.appendChild(lantern);
+
+
+    setTimeout(()=>{
+
+        lantern.remove();
+
+    },19000);
+
+
+}
+
+
+
+
+function startLantern(){
+
+
+    const style=
+    document.createElement("style");
+
+
+    style.innerHTML=`
+
+    @keyframes lanternRise{
+
+        0%{
+            transform:translateY(0);
+            opacity:0;
+        }
+
+        10%{
+            opacity:.85;
+        }
+
+        100%{
+            transform:translateY(-120vh) translateX(20px);
+            opacity:0;
+        }
+
+    }
+
+    `;
+
+
+    document.head.appendChild(style);
+
+
+    createLantern();
+
+
+    setInterval(()=>{
+
+        createLantern();
+
+    },2600);
+
+
+}
+
+
+
+
+/* =====================================
+   流星
+===================================== */
+
+function createMeteor(){
+
+
+    const meteor=
+    document.createElement("div");
+
+
+    meteor.className="meteor";
+
+
+    meteor.style.left=
+    (58+Math.random()*28)+"%";
+
+
+    meteor.style.top=
+    (8+Math.random()*18)+"%";
+
+
+    meteor.style.opacity=1;
+
+
+    scene.appendChild(meteor);
+
+
+    meteor.animate([
+
+        {
+            transform:"translate(0,0) rotate(-30deg)",
+            opacity:0
+        },
+
+        {
+            transform:"translate(0,0) rotate(-30deg)",
+            opacity:1,
+            offset:0.15
+        },
+
+        {
+            transform:"translate(-180px,110px) rotate(-30deg)",
+            opacity:0
+        }
+
+    ],{
+        duration:1300,
+        easing:"ease-out"
+    });
+
+
+    setTimeout(()=>{
+
+        meteor.remove();
+
+    },1400);
+
+
+}
+
+
+
+
+function startMeteor(){
+
+
+    setInterval(()=>{
+
+
+        if(Math.random()<0.65){
+
+            createMeteor();
+
+        }
+
+
+    },4800);
+
+
+}
+
+
+
+
+/* =====================================
+   点击空白处放小烟花
+===================================== */
 
 document.addEventListener(
-
-    "click",
-
-    function(event) {
-
-        if (
-            !started
-        )
-            return;
+"click",
+function(event){
 
 
-        if (
-            event.target
-            .tagName
-            === "BUTTON"
-        )
-            return;
+    if(!started)
+    return;
 
 
-        explode(
+    if(
+    event.target.tagName==="BUTTON"
+    ||
+    event.target.id==="moon"
+    )
+    return;
 
-            event.clientX,
-            event.clientY,
 
-            45
-        );
-    }
+    explode(
+    event.clientX,
+    event.clientY,
+    40
+    );
+
+
+}
 );
+
+
 
 </script>
 
