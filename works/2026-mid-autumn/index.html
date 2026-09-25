@@ -380,6 +380,32 @@ top:18%;
 
 
 
+
+/* ==========================
+   月面纹理
+========================== */
+.moon::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 28% 35%, rgba(190,150,80,.28) 0 9%, transparent 10%),
+        radial-gradient(circle at 65% 28%, rgba(190,150,80,.18) 0 12%, transparent 13%),
+        radial-gradient(circle at 55% 68%, rgba(190,150,80,.22) 0 8%, transparent 9%),
+        radial-gradient(circle at 30% 75%, rgba(190,150,80,.15) 0 6%, transparent 7%);
+    mix-blend-mode:multiply;
+}
+
+.moon::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, transparent 40%, rgba(255,180,80,.12));
+}
+
 /* ==========================
    云层
 ========================== */
@@ -650,7 +676,7 @@ z-index:2;
 
     bottom:13%;
 
-    gap:25px;
+    gap:12px;
 
 }
 
@@ -658,7 +684,7 @@ z-index:2;
 
 .person{
 
-    width:80px;
+    width:75px;
 
     height:90px;
 
@@ -758,6 +784,41 @@ z-index:2;
     rotate(-8deg);
 
 }
+
+/* ==========================
+   草地萤火虫
+========================== */
+.fireflies{
+    position:absolute;
+    bottom:20%;
+    left:0;
+    width:100%;
+    height:120px;
+    z-index:5;
+    pointer-events:none;
+}
+
+.fireflies span{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#ffeaa0;
+    box-shadow:0 0 16px #ffeaa0;
+    animation:fireflyFloat 4s infinite ease-in-out;
+}
+
+.fireflies span:nth-child(1){left:22%;top:50%;}
+.fireflies span:nth-child(2){left:38%;top:25%;animation-delay:1s;}
+.fireflies span:nth-child(3){left:58%;top:60%;animation-delay:2s;}
+.fireflies span:nth-child(4){left:75%;top:35%;animation-delay:.5s;}
+.fireflies span:nth-child(5){left:86%;top:65%;animation-delay:1.5s;}
+
+@keyframes fireflyFloat{
+    0%,100%{opacity:.25;transform:translateY(0);}
+    50%{opacity:1;transform:translateY(-20px);}
+}
+
 /* ==========================
    祝福卡片
 ========================== */
@@ -1102,6 +1163,11 @@ rgba(255,255,255,.3);
 
 <div class="grass"></div>
 
+<!-- 萤火虫 -->
+<div class="fireflies">
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+
 
 
 
@@ -1250,15 +1316,19 @@ opening:[
 
 "今夜月色温柔，",
 
-"一轮明月照人间，",
+"一轮明月越过山河，",
 
-"桂香随着晚风而来，",
+"桂香随着晚风轻轻而来，",
 
-"月上中天，清辉满庭，",
+"月上中天，星河微亮，",
 
-"在这一年一度的团圆夜，",
+"在这一场温柔的秋夜里，",
 
-"今晚的天空很安静，"
+"当晚风吹过窗前，月光也带来了问候，",
+
+"这一夜，明月与清风相伴，",
+
+"在万家灯火之外，也有一轮月亮为你而明。"
 
 ],
 
@@ -1266,17 +1336,21 @@ opening:[
 
 scene:[
 
-"清辉落在窗前，也落在心上。",
-
-"愿这一刻的宁静，陪伴每一个认真生活的人。",
+"清辉落在人间，也落在每一个认真生活的人身旁。",
 
 "远方与此刻，都被同一轮月亮温柔照亮。",
 
+"愿这一刻的宁静，替你收藏一路的疲惫。",
+
 "风吹桂香，星河微亮，万物都在诉说温柔。",
 
-"即使相隔不同地方，也共享这一片月光。",
+"即使相隔山海，也共享这一片澄澈月光。",
 
-"愿这份简单的美好，在心里停留很久。"
+"愿岁月缓缓流淌，把所有美好悄悄赠予你。",
+
+"愿窗前的月色，带走忙碌后的疲惫，也留下心中的温暖。",
+
+"愿你在平凡的日子里，也能遇见属于自己的小小浪漫。"
 
 ],
 
@@ -1284,17 +1358,21 @@ scene:[
 
 wish:[
 
+"愿你心中有月，眼里有光，所行之路皆有方向。",
+
 "愿你所念皆有回应，所行皆有收获。",
 
-"愿你的未来有光，有梦，也有同行的人。",
+"愿每一次努力都有回响，每一个期待都有归期。",
 
-"愿忙碌的日子里，也拥有属于自己的安宁。",
+"愿忙碌之外，也拥有属于自己的浪漫与安宁。",
 
-"愿每一次努力都不会被辜负，每一个期待都有回响。",
+"愿你一路奔赴热爱，也一路被温柔拥抱。",
 
-"愿你一路有风景，也有人陪伴。",
+"愿未来的每一天，都比今天多一点欢喜。",
 
-"愿岁岁平安，常有欢喜。"
+"愿你拥有看见美好的眼睛，也拥有守护热爱的力量。",
+
+"愿山高水长之后，依旧有人间值得。"
 
 ],
 
@@ -1302,15 +1380,17 @@ wish:[
 
 ending:[
 
-"中秋快乐，愿你被温柔以待。",
+"中秋快乐，愿岁岁常欢。",
 
-"愿这一轮明月，替我送去祝福。",
+"愿这一轮明月，替我送去最真挚的祝福。",
 
 "愿未来的日子，如月光一般明亮。",
 
-"愿山长水远，我们依旧常怀美好。",
+"愿山长水远，我们都拥有自己的星辰与月光。",
 
-"愿此后每一天，都有值得期待的事情。"
+"愿此后每一天，都有值得期待的事情。",
+
+"愿你平安喜乐，万事顺遂。"
 
 ]
 
@@ -1325,18 +1405,22 @@ ending:[
 
 const graduateBlessing = [
 
-"今夜暂放下实验与论文，\n"+
+"今夜暂放下未完成的思考，\n"+
 "抬头看看这一轮明月。\n\n"+
-"愿你的数据顺利收敛，\n"+
-"代码不再报错，\n"+
-"思路越来越清晰。\n\n"+
+"愿你的探索都有答案，\n"+
+"努力都有回响。\n\n"+
 "愿忙碌之外，也有属于自己的月光。",
 
 
-"愿你的实验顺利，\n"+
-"模型稳定，结果显著。\n\n"+
-"也愿你在追逐目标的路上，\n"+
-"不要忘记欣赏沿途的星光。"
+"愿你在追逐目标的路上，\n"+
+"始终保持清醒与热爱。\n\n"+
+"愿每一次尝试都有收获，\n"+
+"每一份坚持都有意义。",
+
+
+"愿你在繁忙的日程之外，\n"+
+"仍然拥有仰望星空的时间。\n\n"+
+"愿前路明亮，所愿皆成。"
 
 ];
 
