@@ -211,6 +211,8 @@ moonBreath 2s infinite alternate;
 
 cursor:pointer;
 
+pointer-events:auto;
+
 }
 
 .cover-moon::before{
@@ -1672,6 +1674,11 @@ startMeteor();
 };
 
 
+
+
+// 绑定两个月亮点击事件
+moon.onclick = startMoon;
+coverMoon.onclick = startMoon;
 
 
 /* =====================================
