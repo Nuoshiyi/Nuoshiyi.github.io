@@ -67,16 +67,21 @@ background:
 
 radial-gradient(
 circle at 25% 20%,
-rgba(80,100,170,.35),
-transparent 30%
+rgba(92,115,185,.24),
+transparent 34%
 ),
 
+radial-gradient(
+circle at 75% 12%,
+rgba(120,140,210,.10),
+transparent 22%
+),
 
 linear-gradient(
 180deg,
-#09142f 0%,
-#081226 45%,
-#050914 100%
+#0b1735 0%,
+#09142b 48%,
+#060b17 100%
 );
 
 
@@ -166,8 +171,8 @@ background:
 
 radial-gradient(
 circle,
-#283761,
-#070b19 70%
+#31436f,
+#081022 72%
 );
 
 
@@ -184,9 +189,9 @@ opacity 1.2s ease;
 
 .cover-moon{
 
-width:150px;
+width:102px;
 
-height:150px;
+height:102px;
 
 margin-bottom:25px;
 
@@ -201,8 +206,8 @@ radial-gradient(
 );
 
 box-shadow:
-0 0 45px rgba(255,225,140,.95),
-0 0 120px rgba(255,215,100,.45);
+0 0 22px rgba(255,225,140,.42),
+0 0 62px rgba(255,215,100,.12);
 
 position:relative;
 
@@ -229,9 +234,10 @@ height:100%;
 border-radius:50%;
 
 background:
-radial-gradient(circle at 28% 35%, rgba(190,150,80,.28) 0 9%, transparent 10%),
-radial-gradient(circle at 65% 28%, rgba(190,150,80,.18) 0 12%, transparent 13%),
-radial-gradient(circle at 55% 68%, rgba(190,150,80,.22) 0 8%, transparent 9%);
+radial-gradient(circle at 35% 30%, rgba(255,255,255,.18), transparent 42%),
+radial-gradient(circle at 60% 65%, rgba(255,220,150,.08), transparent 48%);
+
+filter: blur(1px);
 
 }
 
@@ -301,9 +307,9 @@ left:50%;
 top:22%;
 
 
-width:160px;
+width:96px;
 
-height:160px;
+height:96px;
 
 
 transform:
@@ -327,12 +333,12 @@ circle at 35% 30%,
 box-shadow:
 
 
-0 0 40px
-rgba(255,225,140,.9),
+0 0 22px
+rgba(255,225,140,.42),
 
 
-0 0 120px
-rgba(255,215,100,.5);
+0 0 62px
+rgba(255,215,100,.12);
 
 
 cursor:pointer;
@@ -353,14 +359,14 @@ z-index:5;
 .moon.active{
 
 
-left:22%;
+left:18%;
 
-top:18%;
+top:15%;
 
 
-width:145px;
+width:84px;
 
-height:145px;
+height:84px;
 
 
 }
@@ -379,9 +385,9 @@ left:50%;
 top:22%;
 
 
-width:400px;
+width:280px;
 
-height:400px;
+height:280px;
 
 
 transform:
@@ -396,8 +402,9 @@ background:
 
 radial-gradient(
 circle,
-rgba(255,225,140,.25),
-transparent 70%
+rgba(255,225,140,.14),
+rgba(255,225,140,.04) 42%,
+transparent 74%
 );
 
 
@@ -413,9 +420,9 @@ all 2s ease;
 .moon-glow.active{
 
 
-left:22%;
+left:18%;
 
-top:18%;
+top:15%;
 
 
 }
@@ -429,15 +436,10 @@ top:18%;
 .moon::before{
     content:"";
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     border-radius:50%;
-    background:
-        radial-gradient(circle at 28% 35%, rgba(190,150,80,.28) 0 9%, transparent 10%),
-        radial-gradient(circle at 65% 28%, rgba(190,150,80,.18) 0 12%, transparent 13%),
-        radial-gradient(circle at 55% 68%, rgba(190,150,80,.22) 0 8%, transparent 9%),
-        radial-gradient(circle at 30% 75%, rgba(190,150,80,.15) 0 6%, transparent 7%);
-    mix-blend-mode:multiply;
+    background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.12), transparent 44%);
+    filter: blur(1px);
 }
 
 .moon::after{
@@ -445,7 +447,7 @@ top:18%;
     position:absolute;
     inset:0;
     border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, transparent 40%, rgba(255,180,80,.12));
+    background:radial-gradient(circle at 65% 70%, rgba(255,220,170,.04), transparent 50%);
 }
 
 /* ==========================
@@ -466,13 +468,13 @@ height:55px;
 
 background:
 
-rgba(255,255,255,.10);
+rgba(255,255,255,.07);
 
 
 border-radius:50px;
 
 
-filter:blur(5px);
+filter:blur(7px);
 
 
 animation:
@@ -494,7 +496,7 @@ position:absolute;
 
 background:
 
-rgba(255,255,255,.10);
+rgba(255,255,255,.07);
 
 
 border-radius:50%;
@@ -713,42 +715,60 @@ z-index:2;
    坐在草地上的朋友剪影
 ========================== */
 
-
 .people{
 
-    bottom:13%;
+    position:absolute;
 
-    gap:12px;
+    left:50%;
+
+    bottom:10%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    gap:8px;
+
+    width:180px;
+
+    z-index:6;
 
 }
 
-
-
 .person{
 
-    width:75px;
+    width:72px;
 
-    height:90px;
+    height:72px;
 
     position:relative;
 
 }
 
+.person:first-child{
+    transform:translateY(3px);
+}
 
+.person:last-child{
+    transform:translateY(1px);
+}
 
 /* 头 */
-
 .head{
 
     position:absolute;
 
-    top:0;
+    top:4px;
 
-    left:25px;
+    left:22px;
 
-    width:30px;
+    width:22px;
 
-    height:30px;
+    height:22px;
 
     border-radius:50%;
 
@@ -756,75 +776,120 @@ z-index:2;
 
 }
 
+.person:first-child .head{
+    left:24px;
+}
 
+.person:last-child .head{
+    left:20px;
+}
 
 /* 身体（坐姿） */
-
 .body{
 
     position:absolute;
 
-    top:28px;
+    top:24px;
 
-    left:18px;
+    left:22px;
 
-    width:45px;
+    width:24px;
 
-    height:38px;
+    height:26px;
 
-    border-radius:
-
-    20px 20px 8px 8px;
+    border-radius:14px 14px 8px 8px;
 
     background:#05070c;
 
+    transform-origin:top center;
+
 }
 
+.person:first-child .body{
+    transform:rotate(10deg);
+}
 
+.person:last-child .body{
+    transform:rotate(-10deg);
+}
 
 /* 坐着伸出的腿 */
-
 .leg{
 
     position:absolute;
 
-    bottom:10px;
+    bottom:12px;
 
-    width:45px;
+    width:34px;
 
-    height:8px;
+    height:7px;
 
     background:#05070c;
 
     border-radius:10px;
 
+    transform-origin:left center;
+
 }
-
-
-
-/* 左腿 */
 
 .leg.left{
 
-    left:5px;
+    left:6px;
 
-    transform:
-
-    rotate(8deg);
+    transform:rotate(16deg);
 
 }
 
-
-/* 右腿 */
-
 .leg.right{
 
-    right:0;
+    left:28px;
 
-    transform:
+    transform:rotate(-6deg);
 
-    rotate(-8deg);
+}
 
+.person:first-child .leg.left{
+    left:10px;
+    width:32px;
+    transform:rotate(22deg);
+}
+
+.person:first-child .leg.right{
+    left:30px;
+    width:28px;
+    transform:rotate(6deg);
+}
+
+.person:last-child .leg.left{
+    left:6px;
+    width:28px;
+    transform:rotate(-6deg);
+}
+
+.person:last-child .leg.right{
+    left:24px;
+    width:34px;
+    transform:rotate(18deg);
+}
+
+.person::before{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:5px;
+    background:#05070c;
+    border-radius:8px;
+    top:36px;
+}
+
+.person:first-child::before{
+    left:10px;
+    transform:rotate(24deg);
+}
+
+.person:last-child::before{
+    right:10px;
+    transform:rotate(-24deg);
 }
 
 /* ==========================
@@ -875,7 +940,7 @@ position:absolute;
 left:50%;
 
 
-top:42%;
+top:50%;
 
 
 transform:
@@ -1352,121 +1417,63 @@ rgba(255,255,255,.3);
 
 const blessingPool = {
 
-
 opening:[
-
-"今夜月色温柔，",
-
-"一轮明月越过山河，",
-
-"桂香随着晚风轻轻而来，",
-
-"月上中天，星河微亮，",
-
-"在这一场温柔的秋夜里，",
-
-"当晚风吹过窗前，月光也带来了问候，",
-
-"这一夜，明月与清风相伴，",
-
-"在万家灯火之外，也有一轮月亮为你而明。"
-
+"今夜月明，清风正好。",
+"一轮秋月，照过山河。",
+"桂影轻摇，晚风微凉。",
+"星河安静，月色正温柔。",
+"今宵月满，人间清欢。",
+"月光落下，夜也柔软起来。",
+"清辉入夜，秋意正浓。",
+"抬头时，恰逢一轮好月。"
 ],
-
-
 
 scene:[
-
-"清辉落在人间，也落在每一个认真生活的人身旁。",
-
-"远方与此刻，都被同一轮月亮温柔照亮。",
-
-"愿这一刻的宁静，替你收藏一路的疲惫。",
-
-"风吹桂香，星河微亮，万物都在诉说温柔。",
-
-"即使相隔山海，也共享这一片澄澈月光。",
-
-"愿岁月缓缓流淌，把所有美好悄悄赠予你。",
-
-"愿窗前的月色，带走忙碌后的疲惫，也留下心中的温暖。",
-
-"愿你在平凡的日子里，也能遇见属于自己的小小浪漫。"
-
+"愿这一刻，替你收起疲惫。",
+"远近山海，共此清辉。",
+"愿风有归处，心有安宁。",
+"愿平常日子，也有微光可寻。",
+"让今夜的月色，替我捎去问候。",
+"愿你停一停，也听见自己的心。",
+"愿此刻清静，久一点也无妨。",
+"愿这一份月光，落在你身旁。"
 ],
-
-
 
 wish:[
-
-"愿你心中有月，眼里有光，所行之路皆有方向。",
-
-"愿你所念皆有回应，所行皆有收获。",
-
-"愿每一次努力都有回响，每一个期待都有归期。",
-
-"愿忙碌之外，也拥有属于自己的浪漫与安宁。",
-
-"愿你一路奔赴热爱，也一路被温柔拥抱。",
-
-"愿未来的每一天，都比今天多一点欢喜。",
-
-"愿你拥有看见美好的眼睛，也拥有守护热爱的力量。",
-
-"愿山高水长之后，依旧有人间值得。"
-
+"愿所念有回音，所行有暖意。",
+"愿心中有光，脚下有路。",
+"愿奔赴有意义，等待有归期。",
+"愿常有欢喜，也常得自在。",
+"愿一路有景，也有人同行。",
+"愿忙碌有获，闲时有月。",
+"愿日子清亮，心事舒展。",
+"愿热爱不减，初心常在。"
 ],
 
-
-
 ending:[
-
-"中秋快乐，愿岁岁常欢。",
-
-"愿这一轮明月，替我送去最真挚的祝福。",
-
-"愿未来的日子，如月光一般明亮。",
-
-"愿山长水远，我们都拥有自己的星辰与月光。",
-
-"愿此后每一天，都有值得期待的事情。",
-
-"愿你平安喜乐，万事顺遂。"
-
+"中秋快乐，岁岁安然。",
+"愿月常圆，人常安。",
+"愿今夜好梦，明日好景。",
+"愿山高水长，仍有清欢。",
+"愿此后常有月色，也常有好消息。",
+"愿平安喜乐，万事从容。",
+"愿来日漫长，皆有值得。",
+"愿这一轮月，照亮你的远方。"
 ]
 
 };
 
 
-
-
-
-/* 研究生隐藏彩蛋 */
-
-
+/* 隐藏彩蛋：保持自然，不直接写论文/实验/代码 */
 const graduateBlessing = [
+"今夜先把未完的事放一放，\n让月光替你守一会儿。\n\n愿探索有答案，\n愿坚持有回响。",
 
-"今夜暂放下未完成的思考，\n"+
-"抬头看看这一轮明月。\n\n"+
-"愿你的探索都有答案，\n"+
-"努力都有回响。\n\n"+
-"愿忙碌之外，也有属于自己的月光。",
+"愿忙碌之外，\n仍留一小块地方给月色。\n\n愿思路渐明，\n前路也渐亮。",
 
+"今夜不问进度，\n只看月圆。\n\n愿每一次认真，\n最终都有温柔的回应。",
 
-"愿你在追逐目标的路上，\n"+
-"始终保持清醒与热爱。\n\n"+
-"愿每一次尝试都有收获，\n"+
-"每一份坚持都有意义。",
-
-
-"愿你在繁忙的日程之外，\n"+
-"仍然拥有仰望星空的时间。\n\n"+
-"愿前路明亮，所愿皆成。"
-
+"愿长长的日程里，\n也藏着一点清风与月光。\n\n愿所学有所得，\n所盼有回音。"
 ];
-
-
-
 
 
 function random(arr){
@@ -1486,12 +1493,12 @@ function generateBlessing(){
 
 /*
 
-10%概率研究生彩蛋
+8%概率隐藏彩蛋
 
 */
 
 
-if(Math.random()<0.1){
+if(Math.random()<0.08){
 
 
 return {
@@ -1511,7 +1518,7 @@ random(graduateBlessing)
 return {
 
 
-style:"月光寄语",
+style:"月光短笺",
 
 
 text:
